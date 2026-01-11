@@ -1,0 +1,43 @@
+{
+    "audio": "pipewire",
+    "bootloader": "grub-install",
+    "disk_config": {
+        "device_modifications": [
+            {
+		"device": "/dev/sda",
+		"partitions": [
+			{
+				"mountpoint": "/",
+				"size": "100%",
+				"start": "1MiB",
+				"type": "primary",
+				"wipe": true
+			}
+	],
+	"wipe": true
+	    }
+ 	]
+    },
+    "hostname": "cachy-client",
+    "kernels": ["linux-cachyos"],
+    "mirror_config": {
+	"custom_mirrors": {
+		"cachyos": ["http://192.168.1.10/extract/storage/cachyos/"]
+		}
+	},
+    "keyboard-layout": "us",
+    "mirror-region": "Germany",
+    "nic": {
+        "dhcp": true,
+        "type": "nm"
+    }
+    "packages": ["base", "base-devel", "cachyos-settings", "networkmanager",  "openssh"],
+    "users": [
+	{
+		"username": "cachy",
+		"password": "cachy_password",
+		"is_sudo": true
+	}
+	],
+	"timezone": "UTC"
+}

@@ -1,0 +1,33 @@
+DEFAULT menu.c32
+PROMPT 0
+TIMEOUT 300
+MENU TITLE PXE Boot Menu - University Project (Thema 3: PXE-BootServer)
+
+LABEL local
+    MENU LABEL 0) Boot from Local Hard Drive
+    LOCALBOOT 0
+
+LABEL debian
+    MENU LABEL 1) Install Debian 
+    KERNEL /os-images/debian/linux
+    APPEND initrd=/os-images/debian/initrd.gz auto=true priority=critical url=http://192.168.1.10/debian_preseed.cfg cdrom-detect/search_devices=false mirror/protocol=http mirror/http/hostname=192.168.1.10 mirror/http/directory=/extract/storage/debian/ netcfg/get_nameservers=192.168.1.10 netcfg/confirm_static=true   
+
+LABEL kali
+    MENU LABEL 2) Install Kali 
+    KERNEL /os-images/kali/vmlinuz
+    APPEND initrd=/os-images/kali/initrd.gz auto=true priority=critical url=http://192.168.1.10/kali_preseed.cfg netcfg/choose_interface=auto netcfg/get_nameservers=192.168.1.10 mirror/protocol=http mirror/http/hostname=192.168.1.10 mirror/http/directory=/extract/storage/kali/ anna/choose_modules=net-retriever cdrom-detect/search_devices=false
+
+LABEL fedora
+    MENU LABEL 3) Install Fedora 
+    KERNEL /os-images/fedora/vmlinuz
+    APPEND initrd=/os-images/fedora/initrd.img inst.repo=http://192.168.1.10/extract/storage/fedora inst.ks=http://192.168.1.10/fedora_ks.cfg
+
+LABEL rocky
+    MENU LABEL 4) Install Rocky Linux 
+    KERNEL /os-images/rocky/vmlinuz
+    APPEND initrd=/os-images/rocky/initrd.img inst.repo=http://192.168.1.10/extract/storage/rocky inst.ks=http://192.168.1.10/rocky_ks.cfg
+
+LABEL cachyos
+    MENU LABEL 5) Install CachyOS 
+    KERNEL /os-images/cachyos/vmlinuz-linux-cachyos-lts
+    APPEND initrd=/os-images/cachyos/initramfs-linux-cachyos-lts.img ip=dhcp archisobasedir=arch archisobasedrive=http archiso_http_srv=http://192.168.1.10/extract/storage/cachyos/ archinstall_config=http://192.168.1.10/cachyos_config.json
